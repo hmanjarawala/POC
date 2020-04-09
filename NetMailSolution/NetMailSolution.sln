@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeBean.Mail.Net", "NetMail\CoffeeBean.Mail.Net.csproj", "{E1E08E29-C4B8-453C-95C8-854B3214637E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{81B8D53E-AC63-4367-8520-D3AD6D094E38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E1E08E29-C4B8-453C-95C8-854B3214637E} = {E1E08E29-C4B8-453C-95C8-854B3214637E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeBean.Mail.Test", "CoffeeBean.Mail.Test\CoffeeBean.Mail.Test.csproj", "{94F925F6-37E1-47D7-B9D4-87764CDE182C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E1E08E29-C4B8-453C-95C8-854B3214637E} = {E1E08E29-C4B8-453C-95C8-854B3214637E}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1E08E29-C4B8-453C-95C8-854B3214637E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E08E29-C4B8-453C-95C8-854B3214637E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E08E29-C4B8-453C-95C8-854B3214637E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E08E29-C4B8-453C-95C8-854B3214637E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B8D53E-AC63-4367-8520-D3AD6D094E38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B8D53E-AC63-4367-8520-D3AD6D094E38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B8D53E-AC63-4367-8520-D3AD6D094E38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B8D53E-AC63-4367-8520-D3AD6D094E38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94F925F6-37E1-47D7-B9D4-87764CDE182C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94F925F6-37E1-47D7-B9D4-87764CDE182C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94F925F6-37E1-47D7-B9D4-87764CDE182C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94F925F6-37E1-47D7-B9D4-87764CDE182C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
