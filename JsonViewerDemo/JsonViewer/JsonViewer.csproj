@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{40855364-D5DC-41F1-AA9F-47CA3940286D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JsonViewer</RootNamespace>
+    <AssemblyName>JsonViewer</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IronPython">
+      <HintPath>..\lib\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules">
+      <HintPath>..\lib\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\lib\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\lib\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.AspNet">
+      <HintPath>..\lib\Microsoft.Scripting.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata">
+      <HintPath>..\lib\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\IJsonPathValueSystem.cs" />
+    <Compile Include="Classes\JsonConvert.cs" />
+    <Compile Include="Classes\JsonPathContext.cs" />
+    <Compile Include="Classes\JsonPathExpression.cs" />
+    <Compile Include="Classes\JsonPathNode.cs" />
+    <Compile Include="Classes\JsonValueSystem.cs" />
+    <Compile Include="Classes\ScriptEvaluator.cs" />
+    <Compile Include="Master.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master.Designer.cs">
+      <DependentUpon>Master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\JsonPathModel.cs" />
+    <Compile Include="Presenter\IJsonPathEvaluatorPresenter.cs" />
+    <Compile Include="Presenter\IJsonViewerPresenter.cs" />
+    <Compile Include="Presenter\JsonPathEvaluatorPresenter.cs" />
+    <Compile Include="Presenter\JsonViewerPresenter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreeGridView\TreeGridCell.cs" />
+    <Compile Include="TreeGridView\TreeGridEvents.cs" />
+    <Compile Include="TreeGridView\TreeGridNode.cs" />
+    <Compile Include="TreeGridView\TreeGridNodeCollection.cs" />
+    <Compile Include="TreeGridView\TreeGridView.cs" />
+    <Compile Include="View\BasicJsonEvaluator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\BasicJsonEvaluator.Designer.cs">
+      <DependentUpon>BasicJsonEvaluator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\IJsonViewerView.cs" />
+    <Compile Include="View\JsonViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\JsonViewer.Designer.cs">
+      <DependentUpon>JsonViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewtonsoftJsonEvaluator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NewtonsoftJsonEvaluator.Designer.cs">
+      <DependentUpon>NewtonsoftJsonEvaluator.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Master.resx">
+      <DependentUpon>Master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\BasicJsonEvaluator.resx">
+      <DependentUpon>BasicJsonEvaluator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\JsonViewer.resx">
+      <DependentUpon>JsonViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\NewtonsoftJsonEvaluator.resx">
+      <DependentUpon>NewtonsoftJsonEvaluator.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
