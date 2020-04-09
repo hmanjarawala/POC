@@ -1,0 +1,49 @@
+===================================================================================================================================================================
+									IMAP Command Lines
+Commands													Description
+===================================================================================================================================================================
+$ CAPABILITY										Returns collection of capabilities the IMAP server supports.
+$ RENAME "<mailbox>" "<newName>"					Changes the name of the specified mailbox.
+$ DELETE "<mailbox>"								Permanently removes the specified mailbox.
+$ CREATE "<mailbox>"								Creates a new mailbox with the specified name.
+$ SELECT "<mailbox>"								Selects the specified mailbox so that the messages of the mailbox can be accessed.
+$ LIST "" "*"										Retrieves a list of all available and selectable mailboxes on the server.
+$ EXPUNGE											Permanently removes all messages that have the \Deleted flag set from the specified mailbox.
+$ LIST "" "<mailbox>"								Retrieves the set of special-use flags associated with the specified mailbox.
+$ STATUS "<mailbox>" (MESSAGES UNSEEN UIDNEXT)		Retrieves status information (total number of messages, number of unread messages, etc.) for the specified mailbox.
+$ SEARCH <criteria>									Searches the specified mailbox for messages that match the given search criteria.
+$ FETCH <uid> (BODY[HEADER])						Retrieves the mail header for the mail message with the specified unique identifier (UID).
+$ FETCH <uid> (BODY[HEADER.FIELDS (<partsname>)])	Retrieves the specific mail header for the mail message with the specified unique identifier (UID) where partsname are i.e. "from cc bcc" etc.
+$ FETCH <uid> (BODYSTRUCTURE)						Retrieves the body structure for the mail message with the specified unique identifier (UID).
+$ FETCH <uid> (BODY[])								Retrieves the raw MIME/RFC822 mail message data for the mail message with the specified UID.
+$ FETCH <uid> RFC822								Retrieves the raw MIME/RFC822 mail message data for the mail message with the specified UID.
+$ STATUS "<mailbox>" (UIDNEXT)						Retrieves the highest UID in the specified mailbox.
+$ STATUS "<mailbox>" (MESSAGES)						Retrieves the total number of messages in the specified mailbox.
+$ STATUS "<mailbox>" (UNSEEN)						Retrieves the number of unread messages in the specified mailbox.
+$ COPY <uids> "<mailbox>"							Copies the mail messages with the specified UIDs to the specified destination mailbox.
+$ STORE <uids> +FLAGS.SILENT (\Deleted \Seen)		Deletes the mail messages with the specified UIDs.
+$ FETCH <uid> (FLAGS)								Retrieves the IMAP message flag attributes for the mail message with the specified UID.
+$ STORE <uid> FLAGS.SILENT (<flags>)				Sets the IMAP message flag attributes for the mail message with the specified UID.
+$ STORE <uid> +FLAGS.SILENT (<flags>)				Adds the specified set of IMAP message flags to the existing flag attributes of the mail message with the specified UID.
+$ STORE <uid> -FLAGS.SILENT (<flags>)				Removes the specified set of IMAP message flags to the existing flag attributes of the mail message with the specified UID.
+$ LOGIN "<username>" "<password>"					Attempts to establish an authenticated session with the server using the specified credentials.
+$ LOGOUT											Logs an authenticated client out of the server. After the logout sequence has been completed, the server closes the connection with the client.
+
+for more info vosit https://tools.ietf.org/html/rfc3501#section-6.1
+
+
+
+===================================================================================================================================================================
+									POP Command Lines
+Commands													Description
+===================================================================================================================================================================
+CAPA												Returns collection of capabilities the POP3 server supports.
+LIST												Retrieves status information (list of messages with message numbers as well as size for each message).
+TOP <number> 0										Retrieves the mail header for the mail message with the specified message number.
+RETR <number>										Retrieves the mail message data for the mail message with the specified message number.
+DELE <number>										Deletes the mail message with the specified message number.
+USER <username>										The username with which to login in to the POP3 server.
+PASS <password>										he password with which to log in to the POP3 server.
+QUIT												Logs an authenticated client out of the server. After the logout sequence has been completed, the server closes the connection with the client.
+
+for more info visit https://www.ietf.org/rfc/rfc1939.txt
