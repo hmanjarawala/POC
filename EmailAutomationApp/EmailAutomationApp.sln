@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailAutomationLibrary", "EmailClient\EmailAutomationLibrary.csproj", "{3F1B15FB-D4E1-4728-9180-BA29DC5567EE}"
 EndProject
@@ -12,6 +12,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailServerTester", "MailServerTester\MailServerTester.csproj", "{D8F44EBE-F859-41C8-8B08-A302E1C8F2DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailAutomation.Test", "EmailAutomation.Test\EmailAutomation.Test.csproj", "{32E3832A-AB33-4FD4-A607-995CE361122C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSExchangeEmailService", "MSExchangeEmailService\MSExchangeEmailService.csproj", "{5BEE0495-C585-4821-896C-FCECF1145EAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeServerClient", "ExchangeServerClient\ExchangeServerClient.csproj", "{00C4E101-B81C-4FF4-BC47-DE6438F0F062}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5BEE0495-C585-4821-896C-FCECF1145EAF} = {5BEE0495-C585-4821-896C-FCECF1145EAF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,8 +66,27 @@ Global
 		{32E3832A-AB33-4FD4-A607-995CE361122C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{32E3832A-AB33-4FD4-A607-995CE361122C}.Release|x86.ActiveCfg = Release|Any CPU
 		{32E3832A-AB33-4FD4-A607-995CE361122C}.Release|x86.Build.0 = Release|Any CPU
+		{5BEE0495-C585-4821-896C-FCECF1145EAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BEE0495-C585-4821-896C-FCECF1145EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BEE0495-C585-4821-896C-FCECF1145EAF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5BEE0495-C585-4821-896C-FCECF1145EAF}.Debug|x86.Build.0 = Debug|Any CPU
+		{5BEE0495-C585-4821-896C-FCECF1145EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BEE0495-C585-4821-896C-FCECF1145EAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BEE0495-C585-4821-896C-FCECF1145EAF}.Release|x86.ActiveCfg = Release|Any CPU
+		{5BEE0495-C585-4821-896C-FCECF1145EAF}.Release|x86.Build.0 = Release|Any CPU
+		{00C4E101-B81C-4FF4-BC47-DE6438F0F062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C4E101-B81C-4FF4-BC47-DE6438F0F062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C4E101-B81C-4FF4-BC47-DE6438F0F062}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{00C4E101-B81C-4FF4-BC47-DE6438F0F062}.Debug|x86.Build.0 = Debug|Any CPU
+		{00C4E101-B81C-4FF4-BC47-DE6438F0F062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C4E101-B81C-4FF4-BC47-DE6438F0F062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00C4E101-B81C-4FF4-BC47-DE6438F0F062}.Release|x86.ActiveCfg = Release|Any CPU
+		{00C4E101-B81C-4FF4-BC47-DE6438F0F062}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA244C39-57E9-475E-B808-708760698ADC}
 	EndGlobalSection
 EndGlobal
