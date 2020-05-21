@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Com.Service.Email.ExchangeServer.src
+namespace Com.Service.Email.ExchangeServer
 {
     internal class MSExchangeService : IMSExchangeService
     {
@@ -23,6 +23,7 @@ namespace Com.Service.Email.ExchangeServer.src
         public MSExchangeService(string username, string password, string domain)
         {
             service = new ExchangeService(ExchangeVersion.Exchange2010_SP2);
+            service.Url = new Uri(@"https://outlook.office365.com/owa/in.ey.com");
 
             ExchangeCredentials credentials = new WebCredentials(username, password, domain);
             service.Credentials = credentials;

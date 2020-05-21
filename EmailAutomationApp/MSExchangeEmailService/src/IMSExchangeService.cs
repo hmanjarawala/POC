@@ -9,6 +9,6 @@ namespace Com.Service.Email.ExchangeServer
 {
     public interface IMSExchangeService
     {
-        IEnumerable<EmailMessage> ReadEmails(string folderName);
+        IEnumerable<EmailMessage> ReadEmails(string folderName = "Inbox");
     }
 }
