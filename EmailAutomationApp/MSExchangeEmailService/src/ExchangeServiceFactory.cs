@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Com.Service.Email.ExchangeServer
+﻿namespace Com.Service.Email.ExchangeServer
 {
     public class ExchangeServiceFactory
     {
-        public static IMSExchangeService GetExchangeWebClient(string username, string password)
+        public static IMSExchangeService GetExchangeWebClient(string username, string password, string uri)
         {
-            return new MSExchangeService(username, password);
+            return new MSExchangeService(username, password, uri);
         }
 
-        public static IMSExchangeService GetExchangeClient(string username, string password, string domain)
+        public static IMSExchangeService GetExchangeClient(string username, string password, string domain, string uri)
         {
-            return new MSExchangeService(username, password, domain);
+            return new MSExchangeService(username, password, domain, uri);
         }
     }
 }
