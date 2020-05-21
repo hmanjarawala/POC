@@ -11,9 +11,23 @@ namespace ExchangeServerClient
     {
         static void Main(string[] args)
         {
-            IMSExchangeService service = ExchangeServiceFactory.GetExchangeClient("himanshu.manjarawala", "a0dF@theR9", "MEA");
+            //string _uri = "https://outlook.office365.com/EWS/Exchange.asmx";
+            IMSExchangeService service = ExchangeServiceFactory.GetExchangeWebClient("h.manjarawala@hotmail.com", "gr@ndf@ther","h.manjarawala@hotmail.com");
 
             var mails = service.ReadEmails();
+
+            foreach(var mail in mails)
+            {
+                Console.WriteLine(string.Format("{0}:{1}", mail.Id, mail.Subject));
+            }
+
+            var folders = service.GetFolders();
+
+            foreach(var folder in folders)
+            {
+                Console.WriteLine(string.Format("{0}:{1}", folder.Id, folder.DisplayName));
+            }
+            Console.Read();
         }
     }
 }
