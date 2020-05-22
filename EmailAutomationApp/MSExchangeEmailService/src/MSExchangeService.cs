@@ -13,35 +13,37 @@ namespace Com.Service.Email.ExchangeServer
         {
             service = new ExchangeService
             {
-                Credentials = new WebCredentials(username, password)
+                Credentials = new WebCredentials(username, password),
+                Url = new Uri("https://outlook.office365.com/EWS/Exchange.asmx")
             };
 
-            try
-            {
-                service.AutodiscoverUrl(emailAddress, sslRedirectionCallback);
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    service.AutodiscoverUrl(emailAddress, sslRedirectionCallback);
+            //}
+            //catch (Exception)
+            //{
 
-                throw;
-            }
+            //    throw;
+            //}
         }
 
         public MSExchangeService(string username, string password, string domain, string emailAddress)
         {
             service = new ExchangeService
             {
-                Credentials = new WebCredentials(username, password, domain)
+                Credentials = new WebCredentials(username, password, domain),
+                Url = new Uri("https://outlook.office365.com/EWS/Exchange.asmx")
             };
-            try
-            {
-                service.AutodiscoverUrl(emailAddress, sslRedirectionCallback);
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    service.AutodiscoverUrl(emailAddress, sslRedirectionCallback);
+            //}
+            //catch (Exception)
+            //{
 
-                throw;
-            }
+            //    throw;
+            //}
 
         }
 
@@ -61,7 +63,7 @@ namespace Com.Service.Email.ExchangeServer
             // This method call results in a FindFolder call to EWS.
             FindFoldersResults findFolderResults = service.FindFolders(WellKnownFolderName.MsgFolderRoot, view);
 
-            return findFolderResults.AsEnumerable();
+            return findFolderResults.ToList();
         }
 
         public EmailMessage ReadEmail(ItemId id)
@@ -84,8 +86,9 @@ namespace Com.Service.Email.ExchangeServer
             {
                 ItemView view = new ItemView(10)
                 {
-                    PropertySet = new PropertySet(BasePropertySet.IdOnly, EmailMessageSchema.Subject, EmailMessageSchema.Sender, 
-                        EmailMessageSchema.HasAttachments, EmailMessageSchema.IsRead)
+                    PropertySet = new PropertySet(BasePropertySet.IdOnly, ItemSchema.Subject, EmailMessageSchema.Sender,
+                        ItemSchema.HasAttachments, EmailMessageSchema.IsRead, ItemSchema.DateTimeSent,
+                        ItemSchema.DateTimeReceived)
                 };
                 Folder folder = getFolderByName(folderName);
                 FindItemsResults<Item> emailMessages = service.FindItems(folder.Id, view);
