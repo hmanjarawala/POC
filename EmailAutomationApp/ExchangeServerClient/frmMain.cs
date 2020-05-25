@@ -70,15 +70,16 @@ namespace ExchangeServerClient
         {
             if (validateControls())
             {
+                var serviceUri = "https://outlook.office365.com/EWS/Exchange.asmx";
                 if (string.IsNullOrEmpty(txtDomain.Text.Trim()))
                 {
                     exchangeService = ExchangeServiceFactory.GetExchangeWebClient(txtUserName.Text.Trim(),
-                        txtPassword.Text.Trim(), txtEmailAddress.Text.Trim());
+                        txtPassword.Text.Trim(), txtEmailAddress.Text.Trim(), serviceUri);
                 }
                 else
                 {
                     exchangeService = ExchangeServiceFactory.GetExchangeClient(txtUserName.Text.Trim(),
-                        txtPassword.Text.Trim(), txtDomain.Text.Trim(), txtEmailAddress.Text.Trim());
+                        txtPassword.Text.Trim(), txtDomain.Text.Trim(), txtEmailAddress.Text.Trim(), serviceUri);
                 }
 
                 this.BeginInvoke(new MethodInvoker(fetchFolder));
