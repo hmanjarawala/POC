@@ -8,13 +8,13 @@ namespace Com.Service.Email.ExchangeServer
     internal class MSExchangeService : IMSExchangeService
     {
         private ExchangeService service;
-
-        public MSExchangeService(string username, string password, string emailAddress)
+        
+        public MSExchangeService(string username, string password, string emailAddress, string serviceUri)
         {
             service = new ExchangeService
             {
                 Credentials = new WebCredentials(username, password),
-                Url = new Uri("https://outlook.office365.com/EWS/Exchange.asmx")
+                Url = new Uri(serviceUri)
             };
 
             //try
@@ -28,12 +28,12 @@ namespace Com.Service.Email.ExchangeServer
             //}
         }
 
-        public MSExchangeService(string username, string password, string domain, string emailAddress)
+        public MSExchangeService(string username, string password, string domain, string emailAddress, string serviceUri)
         {
             service = new ExchangeService
             {
                 Credentials = new WebCredentials(username, password, domain),
-                Url = new Uri("https://outlook.office365.com/EWS/Exchange.asmx")
+                Url = new Uri(serviceUri)
             };
             //try
             //{
