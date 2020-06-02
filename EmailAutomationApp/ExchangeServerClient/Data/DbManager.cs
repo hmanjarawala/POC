@@ -67,15 +67,18 @@ namespace ExchangeServerClient.Data
         {
             var connection = new SqlConnection(ConnectionString);
             connection.Open();
-            var transaction = connection.BeginTransaction();
+            SqlTransaction transaction = null;
 
             try
             {
-                var query = string.Concat("Insert Into MailMaster(EmailId,EmailFrom,EmailBody,EmailSubject,ReceipientDate,",
-                    "SenderDate,IsRead,HasAttachments)", " Values(@EmailId,@EmailFrom,@EmailBody,@EmailSubject,",
-                    "@ReceipientDate,@SenderDate,@IsRead,@HasAttachment)");
-                SqlParameter[] sqlParameters = new SqlParameter[]
+                if (!IsEmailExistsInTable(message.Id, connection))
                 {
+                    transaction = connection.BeginTransaction();
+                    var query = string.Concat("Insert Into MailMaster(EmailId,EmailFrom,EmailBody,EmailSubject,ReceipientDate,",
+                        "SenderDate,IsRead,HasAttachments)", " Values(@EmailId,@EmailFrom,@EmailBody,@EmailSubject,",
+                        "@ReceipientDate,@SenderDate,@IsRead,@HasAttachment)");
+                    SqlParameter[] sqlParameters = new SqlParameter[]
+                    {
                     new SqlParameter("@EmailId", message.Id.UniqueId),
                     new SqlParameter("@EmailFrom", message.From.Address),
                     new SqlParameter("@EmailBody", message.Body.Text),
@@ -84,22 +87,23 @@ namespace ExchangeServerClient.Data
                     new SqlParameter("@SenderDate", message.DateTimeSent),
                     new SqlParameter("@IsRead", (message.IsRead) ? 1 : 0),
                     new SqlParameter("@HasAttachment", (message.HasAttachments) ? 1 : 0)
-                };
-                SqlHelper.ExecuteNonQuery(transaction,
-                    CommandType.Text,
-                    query,
-                    sqlParameters);
-                sqlParameters = null;
+                    };
+                    SqlHelper.ExecuteNonQuery(transaction,
+                        CommandType.Text,
+                        query,
+                        sqlParameters);
+                    sqlParameters = null;
 
-                InsertEmailAddressDetail(message.Id, message.ToRecipients, "TO", transaction);
+                    InsertEmailAddressDetail(message.Id, message.ToRecipients, "TO", transaction);
 
-                InsertEmailAddressDetail(message.Id, message.CcRecipients, "CC", transaction);
+                    InsertEmailAddressDetail(message.Id, message.CcRecipients, "CC", transaction);
 
-                InsertEmailAddressDetail(message.Id, message.BccRecipients, "BCC", transaction);
+                    InsertEmailAddressDetail(message.Id, message.BccRecipients, "BCC", transaction);
 
-                InsertEmailAttachmentDetail(message.Id, message.Attachments, transaction);
+                    InsertEmailAttachmentDetail(message.Id, message.Attachments, transaction);
 
-                transaction.Commit();
+                    transaction.Commit();
+                }
             }
             catch (Exception e)
             {
@@ -109,6 +113,13 @@ namespace ExchangeServerClient.Data
             {
                 connection.Close();
             }
+        }
+
+        private static bool IsEmailExistsInTable(ItemId messageID, SqlConnection connection)
+        {
+            var query = "Select EmailId From MailMaster Where EmailId = '" + messageID.UniqueId + "'";
+            var emailId = SqlHelper.ExecuteScalar(connection, CommandType.Text, query);
+            return (emailId != null && emailId.Equals(messageID.UniqueId));
         }
 
         private static void InsertEmailAttachmentDetail(ItemId messageID, AttachmentCollection attachments, 
