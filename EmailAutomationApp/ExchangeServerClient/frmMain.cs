@@ -1,4 +1,5 @@
 ﻿using Com.Service.Email.ExchangeServer;
+using ExchangeServerClient.Data;
 using Microsoft.Exchange.WebServices.Data;
 using System;
 using System.Collections.Generic;
@@ -90,6 +91,18 @@ namespace ExchangeServerClient
         private void fillListView(IEnumerable<EmailMessage> messages)
         {
             lstView.Items.Clear();
+            DbManager dbManager = new DbManager
+            {
+                //Provider = "SQLOLEDB.1",
+                //DataSource = @"localhost\SQLEXPRESS",
+                //Database = "EmailTracker",
+                //UseWindowAuthentication = true,
+                //ExtraParameter = "Integrated Security=SSPI;Persist Security Info=False;"
+                CustomConnectionString = "Integrated Security=SSPI;Persist Security Info=False;" + 
+                @"Initial Catalog=EmailTracker;Data Source=localhost\SQLEXPRESS"
+            };
+
+            MessageBox.Show(dbManager.ConnectionString);
             foreach (var message in messages)
             {
                 ListViewItem item = new ListViewItem(message.Sender.ToString());
@@ -97,6 +110,7 @@ namespace ExchangeServerClient
                 item.SubItems.Add(message.DateTimeSent.ToString());
                 item.Tag = message;
                 lstView.Items.Add(item);
+                dbManager.InsertEmailDetails(exchangeService.ReadEmail(message.Id));
             }
         }
 
