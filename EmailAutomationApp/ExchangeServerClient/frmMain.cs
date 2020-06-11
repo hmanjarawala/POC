@@ -71,7 +71,7 @@ namespace ExchangeServerClient
         {
             if (validateControls())
             {
-                var serviceUri = "https://outlook.office365.com/EWS/Exchange.asmx";
+                var serviceUri = "https://outlook.office365.com/EWS/Exchange.asmx";//"https://mail-in.ey.net/ews/exchange.asmx";
                 if (string.IsNullOrEmpty(txtDomain.Text.Trim()))
                 {
                     exchangeService = ExchangeServiceFactory.GetExchangeWebClient(txtUserName.Text.Trim(),
