@@ -12,6 +12,11 @@ namespace ConsolAppForPOCs
     {
         static void Main(string[] args)
         {
+            RunExtractTestLogic();
+        }
+
+        private static void RunExtractTestLogic()
+        {
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
             string imageFilePath = projectDirectory + @"\Files\Image1.jpg";
