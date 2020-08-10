@@ -11,11 +11,11 @@ namespace ExchangeServerClient
         static void Main()
         {
             //string _uri = "https://outlook.office365.com/EWS/Exchange.asmx";
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmMain());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new frmMain());
 
-            new ExchangeMailAutomation().FetchEmail();
+            //new ExchangeMailAutomation().FetchEmail();
         }
     }
 
@@ -29,9 +29,9 @@ namespace ExchangeServerClient
 
                 service.Url = new Uri("https://outlook.office365.com/EWS/Exchange.asmx");
 
-                service.Credentials = new NetworkCredential("himanshu.manjarawala@in.ey.com", "a0dF@theR0", "MEA");
+                service.Credentials = new WebCredentials("h.manjarawala@hotmail.com", "gr@ndf@ther");
 
-                Mailbox mb = new Mailbox("himanshu.manjarawala@in.ey.com");
+                Mailbox mb = new Mailbox("h.manjarawala@hotmail.com");
 
                 FolderId fid1 = new FolderId(WellKnownFolderName.Inbox, mb);
 
