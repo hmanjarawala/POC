@@ -1,4 +1,5 @@
-﻿using ConsolAppForPOCs.VisionAPI.ocr;
+﻿using ConsolAppForPOCs.EWS;
+using ConsolAppForPOCs.VisionAPI.ocr;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +13,14 @@ namespace ConsolAppForPOCs
     {
         static void Main(string[] args)
         {
-            RunExtractTestLogic();
+            RunEwsOAuthLogic();
+        }
+
+        private static void RunEwsOAuthLogic()
+        {
+            var ewsQAuth = new EwsOAuth();
+            ewsQAuth.AuthenticateClientAppPermission().Wait();
+            //ewsQAuth.AuthenticateClientDelegatePermission().Wait();
         }
 
         private static void RunExtractTestLogic()
