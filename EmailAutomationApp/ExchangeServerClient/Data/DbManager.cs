@@ -75,8 +75,9 @@ namespace ExchangeServerClient.Data
                 {
                     transaction = connection.BeginTransaction();
                     var query = string.Concat("Insert Into MailMaster(EmailId,EmailFrom,EmailBody,EmailSubject,ReceipientDate,",
-                        "SenderDate,IsRead,HasAttachments)", " Values(@EmailId,@EmailFrom,@EmailBody,@EmailSubject,",
-                        "@ReceipientDate,@SenderDate,@IsRead,@HasAttachment)");
+                        "SenderDate,IsRead,HasAttachments,CreatedDate,Importance,IsDraft,ConversationId,ConversationTopic)", 
+                        " Values(@EmailId,@EmailFrom,@EmailBody,@EmailSubject,@ReceipientDate,@SenderDate,@IsRead,@HasAttachment,",
+                        "@CreatedDate,@Importance,@IsDraft,@ConversationId,@ConversationTopic)");
                     SqlParameter[] sqlParameters = new SqlParameter[]
                     {
                     new SqlParameter("@EmailId", message.Id.UniqueId),
@@ -86,7 +87,12 @@ namespace ExchangeServerClient.Data
                     new SqlParameter("@ReceipientDate", message.DateTimeReceived),
                     new SqlParameter("@SenderDate", message.DateTimeSent),
                     new SqlParameter("@IsRead", (message.IsRead) ? 1 : 0),
-                    new SqlParameter("@HasAttachment", (message.HasAttachments) ? 1 : 0)
+                    new SqlParameter("@HasAttachment", (message.HasAttachments) ? 1 : 0),
+                    new SqlParameter("@CreatedDate", message.DateTimeCreated),
+                    new SqlParameter("@Importance", message.Importance),
+                    new SqlParameter("@IsDraft", (message.IsDraft) ? 1 : 0),
+                    new SqlParameter("@ConversationId", message.ConversationId.UniqueId),
+                    new SqlParameter("@ConversationTopic", message.ConversationTopic)
                     };
                     SqlHelper.ExecuteNonQuery(transaction,
                         CommandType.Text,
