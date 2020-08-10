@@ -102,7 +102,7 @@ namespace ExchangeServerClient
                 @"Initial Catalog=EmailTracker;Data Source=localhost\SQLEXPRESS"
             };
 
-            MessageBox.Show(dbManager.ConnectionString);
+            //MessageBox.Show(dbManager.ConnectionString);
             foreach (var message in messages)
             {
                 ListViewItem item = new ListViewItem(message.Sender.ToString());
@@ -110,6 +110,7 @@ namespace ExchangeServerClient
                 item.SubItems.Add(message.DateTimeSent.ToString());
                 item.Tag = message;
                 lstView.Items.Add(item);
+                //var msg = exchangeService.ReadEmail(message.Id);
                 dbManager.InsertEmailDetails(exchangeService.ReadEmail(message.Id));
             }
         }
