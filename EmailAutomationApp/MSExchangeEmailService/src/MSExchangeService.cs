@@ -1,6 +1,7 @@
 ﻿using Microsoft.Exchange.WebServices.Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Com.Service.Email.ExchangeServer
@@ -70,7 +71,7 @@ namespace Com.Service.Email.ExchangeServer
         {
             try
             {
-                Item item = Item.Bind(service, id, PropertySet.FirstClassProperties);
+                Item item = Item.Bind(service, id);
                 return EmailMessage.Bind(service, item.Id);
             }
             catch (Exception)
@@ -84,13 +85,15 @@ namespace Com.Service.Email.ExchangeServer
         {
             try
             {
-                ItemView view = new ItemView(10)
+                ItemView view = new ItemView(50)
                 {
                     PropertySet = new PropertySet(BasePropertySet.IdOnly, ItemSchema.Subject, EmailMessageSchema.Sender,
                         ItemSchema.HasAttachments, EmailMessageSchema.IsRead, ItemSchema.DateTimeSent,
-                        ItemSchema.DateTimeReceived)
+                        ItemSchema.DateTimeReceived, ItemSchema.ConversationId)
                 };
                 Folder folder = getFolderByName(folderName);
+                //ICollection<FolderId> folders = new Collection<FolderId> { folder.Id, WellKnownFolderName.Drafts,
+                //    WellKnownFolderName.SentItems };
                 FindItemsResults<Item> emailMessages = service.FindItems(folder.Id, view);
 
                 return emailMessages.Cast<EmailMessage>();
