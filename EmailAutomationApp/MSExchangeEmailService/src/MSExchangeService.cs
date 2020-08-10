@@ -91,12 +91,20 @@ namespace Com.Service.Email.ExchangeServer
                         ItemSchema.HasAttachments, EmailMessageSchema.IsRead, ItemSchema.DateTimeSent,
                         ItemSchema.DateTimeReceived, ItemSchema.ConversationId)
                 };
-                Folder folder = getFolderByName(folderName);
+                IEnumerable<string> folders = new string[] { "Inbox", "Sent Items", "Drafts" };
+                List<Item> results = new List<Item>();
+                foreach(var folderItem in folders)
+                {
+                    Folder folder = getFolderByName(folderItem);
+                    FindItemsResults<Item> emailMessages = service.FindItems(folder?.Id, view);
+                    results.AddRange(emailMessages);
+                }
+
                 //ICollection<FolderId> folders = new Collection<FolderId> { folder.Id, WellKnownFolderName.Drafts,
                 //    WellKnownFolderName.SentItems };
-                FindItemsResults<Item> emailMessages = service.FindItems(folder.Id, view);
 
-                return emailMessages.Cast<EmailMessage>();
+                results.Sort(new EmailMessageComparer());
+                return results.Cast<EmailMessage>();
             }
             catch (Exception)
             {
@@ -107,15 +115,47 @@ namespace Com.Service.Email.ExchangeServer
 
         Folder getFolderByName(string folderName)
         {
-            SearchFilter filter = new SearchFilter.IsEqualTo(FolderSchema.DisplayName, folderName);
-            FindFoldersResults folders = service.FindFolders(WellKnownFolderName.MsgFolderRoot, filter,
-                new FolderView(int.MaxValue) { Traversal = FolderTraversal.Deep });
+            ExtendedPropertyDefinition allFoldersType =
+                new ExtendedPropertyDefinition(13825, MapiPropertyType.Integer);
+
+            FolderId rootFolderId = new FolderId(WellKnownFolderName.MsgFolderRoot);
+            //SearchFilter searchFilter1 = new SearchFilter.IsEqualTo(allFoldersType, "2");
+            SearchFilter searchFilter2 = new SearchFilter.IsEqualTo(FolderSchema.DisplayName, folderName);
+
+            SearchFilter.SearchFilterCollection searchFilterCollection =
+                new SearchFilter.SearchFilterCollection(LogicalOperator.And);
+            //searchFilterCollection.Add(searchFilter1);
+            searchFilterCollection.Add(searchFilter2);
+
+            FindFoldersResults folders = service.FindFolders(rootFolderId, searchFilterCollection,
+                new FolderView(int.MaxValue) { Traversal = FolderTraversal.Shallow });
             return folders.FirstOrDefault((f) => { return f.DisplayName.Equals(folderName, StringComparison.CurrentCultureIgnoreCase); });
         }
 
         bool sslRedirectionCallback(string serviceUri)
         {
             return serviceUri.ToLower().StartsWith("https://");
+        }
+
+        private class EmailMessageComparer : IComparer<Item>
+        {
+            public int Compare(Item x, Item y)
+            {
+                if(x == null)
+                {
+                    if (y == null)
+                        return 0;
+                    else
+                        return -1;
+                }
+                else
+                {
+                    if (y == null)
+                        return 1;
+                    else
+                        return x.DateTimeReceived.CompareTo(y.DateTimeReceived);
+                }                
+            }
         }
     }
 }
