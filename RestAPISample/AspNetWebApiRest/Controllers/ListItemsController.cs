@@ -1,5 +1,4 @@
 ﻿using AspNetWebApiRest.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,6 +7,7 @@ using System.Web.Http;
 
 namespace AspNetWebApiRest.Controllers
 {
+    [Authorize]
     public class ListItemsController : ApiController
     {
         private static readonly List<CustomListItem> _listItems = new List<CustomListItem>();
@@ -29,7 +29,7 @@ namespace AspNetWebApiRest.Controllers
         }
 
         // POST api/<controller>
-        public HttpResponseMessage Post([FromBody]CustomListItem model)
+        public HttpResponseMessage Post([FromBody]NewCustomListItem model)
         {
             if (string.IsNullOrEmpty(model?.Text))
             {
@@ -40,9 +40,13 @@ namespace AspNetWebApiRest.Controllers
             {
                 maxId = _listItems.Max(x => x.Id);
             }
-            model.Id = maxId + 1;
-            _listItems.Add(model);
-            return Request.CreateResponse(HttpStatusCode.Created, model);
+            var item = new CustomListItem
+            {
+                Id = maxId + 1,
+                Text = model.Text
+            };
+            _listItems.Add(item);
+            return Request.CreateResponse(HttpStatusCode.Created, item);
         }
 
         // PUT api/<controller>/5

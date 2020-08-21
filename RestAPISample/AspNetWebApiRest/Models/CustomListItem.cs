@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AspNetWebApiRest.Models
 {
-    public class CustomListItem
+    public class CustomListItem : NewCustomListItem
     {
-        public int Id { get; set; }
+        [Required]
+        public int Id { get; set; }        
+    }
 
+    public class NewCustomListItem
+    {
         public string Text { get; set; }
     }
 }
