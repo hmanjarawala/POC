@@ -12,6 +12,7 @@ namespace AspNetWebApiRest
     {
         // Creates an OWIN pipeline for hosting Web Api
         // and configures the routing.
+        // Refer: https://developer.okta.com/blog/2019/03/13/build-rest-api-with-aspnet-web-api
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();
