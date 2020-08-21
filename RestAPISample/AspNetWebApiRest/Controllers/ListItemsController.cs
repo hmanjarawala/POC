@@ -46,8 +46,19 @@ namespace AspNetWebApiRest.Controllers
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Put(int id, [FromBody]CustomListItem model)
         {
+            if (string.IsNullOrEmpty(model?.Text))
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            var item = _listItems.FirstOrDefault(x => x.Id == model.Id);
+            if (item != null)
+            {
+                item.Text = model.Text;
+                return Request.CreateResponse(HttpStatusCode.OK, item);
+            }
+            return Request.CreateResponse(HttpStatusCode.NotFound);
         }
 
         // DELETE api/<controller>/5
