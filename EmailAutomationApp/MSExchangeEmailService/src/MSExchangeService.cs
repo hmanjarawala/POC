@@ -89,10 +89,10 @@ namespace Com.Service.Email.ExchangeServer
                 {
                     PropertySet = new PropertySet(BasePropertySet.IdOnly, ItemSchema.Subject, EmailMessageSchema.Sender,
                         ItemSchema.HasAttachments, EmailMessageSchema.IsRead, ItemSchema.DateTimeSent,
-                        ItemSchema.DateTimeReceived, ItemSchema.ConversationId)
+                        ItemSchema.DateTimeReceived)
                 };
-                IEnumerable<string> folders = new string[] { "Inbox", "Sent Items", "Drafts" };
-                List<Item> results = new List<Item>();
+                var folders = new string[] { "Inbox", "Sent Items" };
+                var results = new List<Item>();
                 foreach(var folderItem in folders)
                 {
                     Folder folder = getFolderByName(folderItem);
