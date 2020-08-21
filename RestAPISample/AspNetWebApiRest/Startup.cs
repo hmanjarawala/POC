@@ -17,7 +17,7 @@ namespace AspNetWebApiRest
         // Refer: https://developer.okta.com/blog/2019/03/13/build-rest-api-with-aspnet-web-api
         public void Configuration(IAppBuilder app)
         {
-            var authority = "https://dev-670866-admin.okta.com/oauth2/default";
+            var authority = "https://dev-670866.okta.com/oauth2/default";
 
             var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(
                 authority + "/.well-known/openid-configuration",
