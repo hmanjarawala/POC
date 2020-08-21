@@ -51,8 +51,15 @@ namespace AspNetWebApiRest.Controllers
         }
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
+            var item = _listItems.FirstOrDefault(x => x.Id == id);
+            if (item != null)
+            {
+                _listItems.Remove(item);
+                return Request.CreateResponse(HttpStatusCode.OK, item);
+            }
+            return Request.CreateResponse(HttpStatusCode.NotFound);
         }
     }
 }
