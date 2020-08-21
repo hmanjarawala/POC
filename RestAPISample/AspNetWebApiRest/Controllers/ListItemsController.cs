@@ -18,9 +18,14 @@ namespace AspNetWebApiRest.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public HttpResponseMessage Get(int id)
         {
-            return "value";
+            var item = _listItems.FirstOrDefault(x => x.Id == id);
+            if(item != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, item);
+            }
+            return Request.CreateResponse(HttpStatusCode.NotFound);
         }
 
         // POST api/<controller>
