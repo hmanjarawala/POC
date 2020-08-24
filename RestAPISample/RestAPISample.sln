@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetWebApiRest", "AspNetWebApiRest\AspNetWebApiRest.csproj", "{D95B30D8-7B07-4969-81AF-B0A43D882DE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionFilters", "ActionFilters\ActionFilters.csproj", "{56A58764-EF74-4849-87A0-7C9F1472B5C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D95B30D8-7B07-4969-81AF-B0A43D882DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D95B30D8-7B07-4969-81AF-B0A43D882DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D95B30D8-7B07-4969-81AF-B0A43D882DE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56A58764-EF74-4849-87A0-7C9F1472B5C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56A58764-EF74-4849-87A0-7C9F1472B5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56A58764-EF74-4849-87A0-7C9F1472B5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56A58764-EF74-4849-87A0-7C9F1472B5C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
