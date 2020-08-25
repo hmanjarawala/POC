@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ActionFilters.ActionFilters;
 using ActionFilters.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,9 @@ namespace ActionFilters
             var connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=CodeMaze;Data Source=localhost\SQLEXPRESS";
             services.AddDbContext<MovieContext>(options => 
                 options.UseSqlServer(connectionString));
+
+            services.AddScoped<ValidateEntityExistsAttribute<Movie>>();
+
             services.AddControllers();
         }
 
