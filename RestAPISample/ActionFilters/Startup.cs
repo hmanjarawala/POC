@@ -32,6 +32,7 @@ namespace ActionFilters
             services.AddDbContext<MovieContext>(options => 
                 options.UseSqlServer(connectionString));
 
+            services.AddScoped<ValidationFilterAttribute>();
             services.AddScoped<ValidateEntityExistsAttribute<Movie>>();
 
             services.AddControllers();
