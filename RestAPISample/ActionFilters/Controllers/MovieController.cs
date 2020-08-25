@@ -38,6 +38,7 @@ namespace ActionFilters.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public IActionResult Post([FromBody]Movie movie)
         {
             if (movie == null)
@@ -53,6 +54,7 @@ namespace ActionFilters.Controllers
         }
 
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEntityExistsAttribute<Movie>))]
         public IActionResult Put(Guid id, [FromBody]Movie movie)
         {
