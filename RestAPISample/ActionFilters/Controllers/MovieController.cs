@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using ActionFilters.ActionFilters;
 using ActionFilters.Entities;
 using ActionFilters.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,7 @@ namespace ActionFilters.Controllers
         }
 
         [HttpGet("{id}", Name = "MovieById")]
+        [ServiceFilter(typeof(ValidateEntityExistsAttribute<Movie>))]
         public IActionResult Get(Guid id)
         {
             var _dbmovie = _context.Movies.SingleOrDefault(x => x.Id.Equals(id));
@@ -51,6 +53,7 @@ namespace ActionFilters.Controllers
         }
 
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidateEntityExistsAttribute<Movie>))]
         public IActionResult Put(Guid id, [FromBody]Movie movie)
         {
             if (movie == null)
@@ -73,6 +76,7 @@ namespace ActionFilters.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ServiceFilter(typeof(ValidateEntityExistsAttribute<Movie>))]
         public IActionResult Delete(Guid id)
         {
             var _dbmovie = _context.Movies.SingleOrDefault(x => x.Id.Equals(id));
