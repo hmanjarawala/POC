@@ -29,24 +29,15 @@ namespace ActionFilters.Controllers
         [ServiceFilter(typeof(ValidateEntityExistsAttribute<Movie>))]
         public IActionResult Get(Guid id)
         {
-            var _dbmovie = _context.Movies.SingleOrDefault(x => x.Id.Equals(id));
+            var _dbmovie = HttpContext.Items["entity"] as Movie;
 
-            if (_dbmovie == null)
-                return NotFound();
-            else
-                return Ok(_dbmovie);
+            return Ok(_dbmovie);
         }
 
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public IActionResult Post([FromBody]Movie movie)
         {
-            if (movie == null)
-                return BadRequest("Movie object is null");
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
@@ -58,16 +49,7 @@ namespace ActionFilters.Controllers
         [ServiceFilter(typeof(ValidateEntityExistsAttribute<Movie>))]
         public IActionResult Put(Guid id, [FromBody]Movie movie)
         {
-            if (movie == null)
-                return BadRequest("Movie object is null");
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var _dbmovie = _context.Movies.SingleOrDefault(x => x.Id.Equals(id));
-
-            if (_dbmovie == null)
-                return NotFound();
+            var _dbmovie = HttpContext.Items["entity"] as Movie;
 
             _dbmovie.Map(movie);
 
@@ -81,10 +63,7 @@ namespace ActionFilters.Controllers
         [ServiceFilter(typeof(ValidateEntityExistsAttribute<Movie>))]
         public IActionResult Delete(Guid id)
         {
-            var _dbmovie = _context.Movies.SingleOrDefault(x => x.Id.Equals(id));
-
-            if (_dbmovie == null)
-                return NotFound();
+            var _dbmovie = HttpContext.Items["entity"] as Movie;
 
             _context.Movies.Remove(_dbmovie);
             _context.SaveChanges();
