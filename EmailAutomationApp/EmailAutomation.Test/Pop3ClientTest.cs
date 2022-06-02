@@ -54,12 +54,12 @@ namespace EmailAutomation.Test
             {
                 return new[]
                 {
-                    new object[] {"outlook.office365.com", 995, true, "engg-qa-test@automationanywhere.com", Resources.CORRECT_PASSWORD, string.Empty},
-                    new object[] {"outlook.office365.com", 110, false, "engg-qa-test@automationanywhere.com", Resources.CORRECT_PASSWORD, "-ERR Command is not valid in this state."},
-                    new object[] {"outlook.office365.com", 993, true, "engg-qa-test@automationanywhere.com", Resources.CORRECT_PASSWORD, "Please provide a valid port number."},
-                    new object[] {"outlook.office364.com", 995, true, "engg-qa-test@automationanywhere.com", Resources.CORRECT_PASSWORD, "Unable to establish connection. Please verify hostname or port number."},
-                    new object[] {"outlook.office365.com", 995, false, "engg-qa-test@automationanywhere.com", Resources.CORRECT_PASSWORD, "Unable to establish connection. Please verify hostname or port number."},
-                    new object[] {"outlook.office365.com", 995, true, "engg-qa-test@automationanywhere.com", Resources.INCORRECT_PASSWORD, "Logon failure: unknown user name or bad password."},
+                    new object[] {"outlook.office365.com", 995, true, "abc@pqr.com", Resources.CORRECT_PASSWORD, string.Empty},
+                    new object[] {"outlook.office365.com", 110, false, "abc@pqr.com", Resources.CORRECT_PASSWORD, "-ERR Command is not valid in this state."},
+                    new object[] {"outlook.office365.com", 993, true, "abc@pqr.com", Resources.CORRECT_PASSWORD, "Please provide a valid port number."},
+                    new object[] {"outlook.office364.com", 995, true, "abc@pqr.com", Resources.CORRECT_PASSWORD, "Unable to establish connection. Please verify hostname or port number."},
+                    new object[] {"outlook.office365.com", 995, false, "abc@pqr.com", Resources.CORRECT_PASSWORD, "Unable to establish connection. Please verify hostname or port number."},
+                    new object[] {"outlook.office365.com", 995, true, "abc@pqr.com", Resources.INCORRECT_PASSWORD, "Logon failure: unknown user name or bad password."},
                 };
             }
         }
