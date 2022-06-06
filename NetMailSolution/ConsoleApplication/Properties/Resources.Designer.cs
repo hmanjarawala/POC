@@ -19,7 +19,7 @@ namespace ConsoleApplication.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,43 +57,6 @@ namespace ConsoleApplication.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ### .Net-to-MIME charset mapping table ####
-        ///### This should be the first mapping table ###
-        ///
-        ///8859_1		ISO-8859-1
-        ///iso8859_1	ISO-8859-1
-        ///ISO8859-1	ISO-8859-1
-        ///
-        ///8859_2		ISO-8859-2
-        ///iso8859_2	ISO-8859-2
-        ///ISO8859-2	ISO-8859-2
-        ///
-        ///8859_3		ISO-8859-3
-        ///iso8859_3	ISO-8859-3
-        ///ISO8859-3	ISO-8859-3
-        ///
-        ///8859_4		ISO-8859-4
-        ///iso8859_4	ISO-8859-4
-        ///ISO8859-4	ISO-8859-4
-        ///
-        ///8859_5		ISO-8859-5
-        ///iso8859_5	ISO-8859-5
-        ///ISO8859-5	ISO-8859-5
-        ///
-        ///8859_6		ISO-8859-6
-        ///iso8859_6	ISO-8859-6
-        ///ISO8859-6	ISO-8859-6
-        ///
-        ///8859_7		ISO-8859-7
-        ///i [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string CoffeeBean_Encoding {
-            get {
-                return ResourceManager.GetString("CoffeeBean_Encoding", resourceCulture);
             }
         }
     }

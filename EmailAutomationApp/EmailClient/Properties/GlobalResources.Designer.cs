@@ -61,7 +61,7 @@ namespace EmailAutomationLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adm!N*45%^$.
+        ///   Looks up a localized string similar to Test@1234.
         /// </summary>
         internal static string CORRECT_PASSWORD {
             get {
